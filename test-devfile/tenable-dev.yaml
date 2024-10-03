@@ -30,17 +30,17 @@ components:
         - 99d
       env:
         - name: IMPORT_REPO_NAME
-          value: ns-containers
+          value: 'ns-containers'
         - name: CHECK_POLICY
-          value: true
+          value: 'true'
         - name: CHECK_POLICY_TIMEOUT
-          value: 180
+          value: '180'
         - name: TENABLE_PROXY
-          value: nsos-te1-proxy.atldc.nscorp.com:3128
+          value: 'nsos-te1-proxy.atldc.nscorp.com:3128'
         - name: TENABLE_ACCESS_KEY
-          value: TENABLE_ACCESS_KEY
+          value: 'TENABLE_ACCESS_KEY'
         - name: TENABLE_SECRET_KEY
-          value: TENABLE_SECRET_KEY
+          value: 'TENABLE_SECRET_KEY'
       securityContext:
         allowPrivilegeEscalation: true
   - name: ermetic
