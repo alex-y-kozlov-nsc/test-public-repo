@@ -41,8 +41,6 @@ components:
           value: 'TENABLE_ACCESS_KEY'
         - name: TENABLE_SECRET_KEY
           value: 'TENABLE_SECRET_KEY'
-      securityContext:
-        allowPrivilegeEscalation: true
   - name: ermetic
     container:
       image: nsos-pr1-nex.atldc.nscorp.com:8083/ermetic-scanner:latest
