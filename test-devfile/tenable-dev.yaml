@@ -1,0 +1,61 @@
+schemaVersion: 2.2.2
+metadata:
+  name: veracode-dev
+projects:
+  - name: openshift-jenkins-pipelines
+    clonePath: openshift-jenkins-pipelines
+    git:
+      remotes:
+        origin: https://github.com/Norfolk-Southern/openshift-jenkins-pipelines.git
+      checkoutFrom:
+        revision: podtemplate
+components:
+  - name: tools
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      memoryLimit: 4.7G
+      mountSources: true
+    attributes:
+      container-overrides:
+        imagePullPolicy: IfNotPresent
+  - name: tenable
+    attributes:
+      container-overrides:
+        imagePullPolicy: IfNotPresent    
+    container:
+      image: nsos-pr1-nex.atldc.nscorp.com:8083/tenable/cs-scanner
+      command:
+        - sleep
+      args:
+        - 99d
+      env:
+        - name: IMPORT_REPO_NAME
+          value: ns-containers
+        - name: CHECK_POLICY
+          value: true
+        - name: CHECK_POLICY_TIMEOUT
+          value: 180
+        - name: TENABLE_PROXY
+          value: nsos-te1-proxy.atldc.nscorp.com:3128
+        - name: TENABLE_ACCESS_KEY
+          value: TENABLE_ACCESS_KEY
+        - name: TENABLE_SECRET_KEY
+          value: TENABLE_SECRET_KEY
+      securityContext:
+        allowPrivilegeEscalation: true
+  - name: ermetic
+    container:
+      image: nsos-pr1-nex.atldc.nscorp.com:8083/ermetic-scanner:latest
+      command: ['tail']
+      args: ['-f', '/dev/null']
+    attributes:
+      container-overrides:
+        imagePullPolicy: IfNotPresent      
+  - name: groovy-jdk21
+    container:
+      image: image-registry.openshift-image-registry.svc:5000/devspaces-x1oqe/groovy:jdk21
+      command: ['tail']
+      args: ['-f', '/dev/null']
+    attributes:
+      container-overrides:
+        imagePullPolicy: IfNotPresent
