@@ -1,6 +1,6 @@
 schemaVersion: 2.2.2
 metadata:
-  name: veracode-dev
+  name: tenable-dev
 projects:
   - name: openshift-jenkins-pipelines
     clonePath: openshift-jenkins-pipelines
